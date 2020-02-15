@@ -1,11 +1,12 @@
-const app = require('express');
-const router = app.Router();
+const express = require('express');
+const app = express();
+const router = express.Router();
 
 router.get('/', (req, res, next) => {
     res.send("One more update")
 })
 
-router.post('/search',req, res, next) => {
+app.post('/', (req, res, next) => {
     console.log(req.body)
     res.send(
         `Post request received! ${req.body}`
