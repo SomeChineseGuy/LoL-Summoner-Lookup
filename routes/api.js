@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
     res.send("One more update")
 })
 
-app.post('/', (req, res, next) => {
+app.post('/search', (req, res, next) => {
     console.log(req.body)
     res.send(
         `Post request received! ${req.body}`
