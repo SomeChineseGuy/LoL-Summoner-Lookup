@@ -36,14 +36,35 @@ const fiveMatchesAndTimeStamp = async(summoner) => {
     let user = await summonerSearch(summoner);
     let matches = await matchListSearch(user)
     let results = await [...matches.map(match => ({game: match.gameId, time: match.timestamp}))]
-    console.log(results)
-    let singleMatch =  results.map(async match => {
-        let res = await axios
-            .get(`https://na1.api.riotgames.com/lol/match/v4/matches/${match.game}?api_key=${process.env.API_KEY}`)
-    })
-    console.log(singleMatch)
+
+    return results
 }
 
-fiveMatchesAndTimeStamp("thatguy75")
+
+
+const singleMatch = async(matches) => {
+    // let res =  matches.map(async match => {
+    //     let results = await axios
+    //         .get(`https://na1.api.riotgames.com/lol/match/v4/matches/${match.game}?api_key=${process.env.API_KEY}`)
+    //         return results
+    // })
+    let space = []
+    for(let i = 0; i < matches.length; i++) {
+        space.push(
+            await axios
+            .get(`https://na1.api.riotgames.com/lol/match/v4/matches/${matches[i].game}?api_key=${process.env.API_KEY}`)
+        )
+    }
+    return space
+    
+}
+
+const search = async () => { 
+    let list = await fiveMatchesAndTimeStamp("thatguy75")
+    let single = await singleMatch(list)
+    console.log(single)
+}
+
+search()
 
 module.exports = router;
