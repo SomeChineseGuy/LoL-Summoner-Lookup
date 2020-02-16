@@ -35,14 +35,12 @@ const matchListSearch = async (summonerID) => {
     
 }
 
-matchListSearch()
+const search = async(summoner) => {
+    let user = await summonerSearch(summoner);
+    let matches = await matchListSearch(user)
+    console.log(matches)
+}
 
-
-// const search = async(summoner) => {
-//     let user = await summonerSearch(summoner);
-//     console.log(user)
-// }
-
-// search("thatguy75")
+search("thatguy75")
 
 module.exports = router;
