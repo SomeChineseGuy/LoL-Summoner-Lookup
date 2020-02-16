@@ -38,7 +38,8 @@ const matchListSearch = async (summonerID) => {
 const search = async(summoner) => {
     let user = await summonerSearch(summoner);
     let matches = await matchListSearch(user)
-    console.log(matches)
+    let results = await [...matches.map(match => ({game: match.gameId, time: match.timestamp}))]
+    console.log(results)
 }
 
 search("thatguy75")
