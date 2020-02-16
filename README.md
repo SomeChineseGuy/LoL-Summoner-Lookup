@@ -1,5 +1,4 @@
 ## LoL Summoner name check app
 
-## Todo list
-Send request to the front end.
-Test api call to Riot.
+## Note
+I wanna to only call each api call only once because calling it more times will use up my very little limited api calls.
