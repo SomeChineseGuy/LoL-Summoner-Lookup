@@ -10,9 +10,6 @@ router.get('/search', (req, res, next) => {
     res.send(`Just got it!`)
 })
 
-
-console.log(router.post)
-
 router.post('/search', (req, res, next) => {
     console.log(req.body)
     res.send(
