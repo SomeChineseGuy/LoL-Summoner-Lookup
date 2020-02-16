@@ -59,12 +59,12 @@ const singleMatch = async(matches) => {
     
 }
 
-const search = async () => { 
-    let list = await fiveMatchesAndTimeStamp("thatguy75")
+const search = async (summoner) => { 
+    let list = await fiveMatchesAndTimeStamp(summoner)
     let single = await singleMatch(list)
     console.log(single)
 }
 
-search()
+search("thatguy75")
 
 module.exports = router;
