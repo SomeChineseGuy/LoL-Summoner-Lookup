@@ -15,14 +15,11 @@ router.post('/search', (req, res, next) => {
     )
 })
 
-
-
 const summonerSearch = async (summoner) => {
     let res = await axios
         .get(`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summoner}?api_key=${process.env.API_KEY}`)
     
     let accountId = await res.data.accountId
-    // console.log(accountId)
     return accountId
 }
 
@@ -35,13 +32,18 @@ const matchListSearch = async (summonerID) => {
     
 }
 
-const search = async(summoner) => {
+const fiveMatchesAndTimeStamp = async(summoner) => {
     let user = await summonerSearch(summoner);
     let matches = await matchListSearch(user)
     let results = await [...matches.map(match => ({game: match.gameId, time: match.timestamp}))]
     console.log(results)
+    let singleMatch =  results.map(async match => {
+        let res = await axios
+            .get(`https://na1.api.riotgames.com/lol/match/v4/matches/${match.game}?api_key=${process.env.API_KEY}`)
+    })
+    console.log(singleMatch)
 }
 
-search("thatguy75")
+fiveMatchesAndTimeStamp("thatguy75")
 
 module.exports = router;
