@@ -6,10 +6,6 @@ router.get('/', (req, res, next) => {
     res.send("One more update")
 })
 
-router.get('/search', (req, res, next) => {
-    res.send(`Just got it!`)
-})
-
 router.post('/search', (req, res, next) => {
     console.log(req.body)
     res.send(
