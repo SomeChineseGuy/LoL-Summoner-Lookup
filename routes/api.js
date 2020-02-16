@@ -16,17 +16,17 @@ router.post('/search', (req, res, next) => {
 })
 
 
-const riotApiTest = async () => {
+const riotSummonerSearch = async (summoner) => {
     let res = await axios
-    .get('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Thatguy75?api_key=' + process.env.API_KEY)
+    .get(`https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summoner}?api_key=${process.env.API_KEY}`)
     
-    let data = res.data
-    console.log(data)
+    let accountId = res.data.accountId
+    console.log(accountId)
 }
 
 
 
 
-riotApiTest()
+riotSummonerSearch("thatguy75")
 
 module.exports = router;
